@@ -3,15 +3,13 @@
 
 function Invoke-MemoryLibBuild {
 
-    $includes = 
-        "memory\include",
-        "memory\src"
+    $Includes = "memory\include", "memory\src"
+    $Source   = "memory\src\sld-memory.cpp"
+    $Obj      = "sld-memory.obj" 
+    $LibName  = "SLD.Memory.lib"
 
-    $source = "memory\src\sld-memory.cpp"
-    $obj    = "sld-memory.obj" 
-
-    Invoke-CompileStaticLib -SourceList $source -IncludeList $includes
-    Invoke-Lib -LibName "SLD.Memory.lib" -ObjList $obj
+    Invoke-CompileStaticLib -SourceList $Source  -IncludeList $Includes
+    Invoke-Lib              -LibName    $LibName -ObjList     $obj
 }
 
 Export-ModuleMember -Function Invoke-MemoryLibBuild
