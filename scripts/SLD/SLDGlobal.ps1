@@ -1,49 +1,40 @@
-$script:StaticLibFlags = 
-    "/c"    +
-    "/MD"   +
-    "/Z7"   +
-    "/EHsc" +
-    "/std:c++17"
-
-$script:ObjDir = "build\debug\obj\"
-$script:BinDir = "build\debug\bin\"
-$script:LibDir = "build\debug\lib\"
-
-$script:LibRoot = $PSScriptRoot + "..\..\"
-
-$script:CLPath   = "cl.exe "
-$script:LibPath  = "lib.exe "
-$script:LinkPath = "link.exe "
-
-$script:ObjPathFlag = "/Fo:" + $script:ObjDir 
-
-function Create-CompileCommandLib {
-	param (
-		[string]$LibSource,
-		[string]$LibInclude
-	)
-	
-	$compileCommand = 
-		$script:CLPath          +
-		$LibSource              +
-		$script:GStaticLibFlags +
-		$script:ObjPathFlag
-
-	return $compileCommand
+function Get-DirObj {
+	return "build\debug\obj\"
 }
 
-function Create-LibCommand {
-	param (
-		[string]$LibName
-		[string]$ObjList
-	)
+function Get-DirBin {
+	return "build\debug\bin\"
+}
 
-	$outString = $script:LibDir + $LibName
+function Get-DirLib {
+	return "build\debug\lib\"
+}
 
-	$libCommand = 
-		$script:LibPath +
-		$outString      +
-		$ObjList
+function Create-DirObj {
 
-	return $libCommand
+	$DirObj = Get-DirObj
+
+	if (!(Test-Path -Path $DirObj) { New-Item -ItemType Directory -Path $DirObj}
+}
+
+function Create-DirBin {
+
+	$DirBin = Get-DirBin
+
+	if (!(Test-Path -Path $DirBin)) { New-Item -ItemType Directory -Path $DirBin}
+}
+
+function Create-DirLib {
+
+	$DirLib = Get-DirLib
+
+	if (!(Test-Path -Path $DirLib)) { New-Item -ItemType Directory -Path $DirLib}
+}
+
+function Get-CompilerOutFlag {
+
+	$dir  = Get-DirStringObj
+	$flag = "/Fo:" + $dir
+
+	return $flag
 }
