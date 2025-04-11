@@ -7,24 +7,25 @@ function Get-CompileStaticLibFlags {
 	)
 
 	# source in
-	$SourceListString = $SourceList -join " "
+	$SourceListString  = ($SourceList -join " ") + " "
 
 	#obj out
-	$ObjPathFlag = "/Fo:" + Get-DirObj
+	$ObjDir      = Get-DirObj
+	$ObjPathFlag = "/Fo:" + $ObjDir + " "
 
 	#includes
-	$IncludeListString = $IncludeList -join "/I"
+	$IncludeListString = "/I" + ($IncludeList -join "/I") + " "
 
 	#flags
 	$StaticLibFlags = 
 		$SourceListString  +
 		$IncludeListString +
 		$ObjPathFlag       +
-		"/c"               +
-		"/MD"              +
-		"/Z7"              +
-		"/EHsc"            +
-		"/std:c++17"
+		"/c "              +
+		"/MD "             +
+		"/Z7 "             +
+		"/EHsc "           +
+		"/std:c++17 "
 
 	return $StaticLibFlags
 }
@@ -55,6 +56,8 @@ function Invoke-CompileStaticLib {
 	Create-DirObj
 
 	$CompileCommand = Get-CompileStaticLibCommand -SourceList $SourceList -IncludeList $IncludeList
+
+	Write-Host $CompileCommand
 
 	Invoke-Expression $CompileCommand 
 }

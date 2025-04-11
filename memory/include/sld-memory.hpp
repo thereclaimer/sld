@@ -1,0 +1,4 @@
+#ifndef SLD_MEMORY_HPP
+#define SLD_MEMORY_HPP
+
+#endif //SLD_MEMORY_HPP

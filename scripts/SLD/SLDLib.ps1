@@ -6,13 +6,9 @@ function Get-LibFlags {
 		[string[]] $ObjList
 	)
 
-	$DirLib = Get-DirLib
-	$DirObj = Get-DirObj
-
-	$FlagLibOut = "/OUT:" + $DirLib + "\" + $LibName
-
-	$SourceStringDelimiter = $DirObj + " "
-	$SourceString          = $ObjList -join $SourceStringDelimiter
+	$FlagLibOut            = "/OUT:" + (Get-DirLib) + "\" + $LibName + " "
+	$SourceStringDelimiter = (Get-DirObj)                            + " "
+	$SourceString          = ($ObjList -join $SourceStringDelimiter) + " "
 
 	$LibFlags =
 		$FlagLibOut +
