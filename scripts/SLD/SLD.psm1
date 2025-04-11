@@ -9,7 +9,7 @@ function Invoke-MemoryLibBuild {
     $LibName  = "SLD.Memory.lib"
 
     Invoke-CompileStaticLib -SourceList $Source  -IncludeList $Includes
-    Invoke-Lib              -LibName    $LibName -ObjList     $obj
+    Invoke-Lib              -LibName    $LibName -ObjList     $Obj
 }
 
 Export-ModuleMember -Function Invoke-MemoryLibBuild

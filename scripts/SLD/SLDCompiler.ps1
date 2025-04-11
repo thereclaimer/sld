@@ -57,7 +57,5 @@ function Invoke-CompileStaticLib {
 
 	$CompileCommand = Get-CompileStaticLibCommand -SourceList $SourceList -IncludeList $IncludeList
 
-	Write-Host $CompileCommand
-
 	Invoke-Expression $CompileCommand 
 }
